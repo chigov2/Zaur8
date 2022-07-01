@@ -14,7 +14,7 @@ public class Test1 {
                 .buildSessionFactory();
         try {
             Session session = factory.getCurrentSession();
-            Employee employee = new Employee("Max", "Stoba", "IT", 600);
+            Employee employee = new Employee("Mike", "Stoba", "IT", 600);
             session.beginTransaction();
 
             session.save(employee);
