@@ -1,14 +1,14 @@
-package hibernate_test2;
+package hibernate_one_to_one;
 
 
-import hibernate_test2.entity.Detail;
-import hibernate_test2.entity.Employee;
+import hibernate_one_to_one.entity.Detail;
+import hibernate_one_to_one.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class Test26 {
+public class Test23 {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -18,18 +18,17 @@ public class Test26 {
         Session session = null;
         try {
 
+
             session = factory.getCurrentSession();
+
             session.beginTransaction();
 
-            Detail detail3 = session.get(Detail.class,3);
-            System.out.println(detail3.getEmployee());
-            System.out.println(detail3);
-
+            Employee employee3 = session.get(Employee.class,15);
+            System.out.println(employee3.getEmployeeDetail());
 
             session.getTransaction().commit();
             System.out.println("Done");
             System.out.println("---------------------");
-
 
 
         }finally {
