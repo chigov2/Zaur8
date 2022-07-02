@@ -1,4 +1,4 @@
-package com.example.Zaur8;
+package hibernate_test2;
 
 
 import hibernate_test2.entity.Detail;
@@ -17,12 +17,13 @@ public class Test1 {
                 .buildSessionFactory();
         try {
 
+
+            Session session = factory.getCurrentSession();
             Employee employee1 = new Employee("Olena","gerasymluik","IT",800);
             Detail detail1 = new Detail("Vinnitsa","+380675063714","paginas88@gmail.com");
 
             employee1.setEmployeeDetail(detail1);
 
-            Session session = factory.getCurrentSession();
             session.beginTransaction();
 
             session.save(employee1);

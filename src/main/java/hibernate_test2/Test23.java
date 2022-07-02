@@ -1,4 +1,4 @@
-package com.example.Zaur8;
+package hibernate_test2;
 
 
 import hibernate_test2.entity.Detail;
@@ -8,24 +8,23 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class Test1 {
+public class Test23 {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Employee.class)
                 .addAnnotatedClass(Detail.class)
                 .buildSessionFactory();
+        Session session = null;
         try {
 
-            Employee employee1 = new Employee("Olena","gerasymluik","IT",800);
-            Detail detail1 = new Detail("Vinnitsa","+380675063714","paginas88@gmail.com");
 
-            employee1.setEmployeeDetail(detail1);
+            session = factory.getCurrentSession();
 
-            Session session = factory.getCurrentSession();
             session.beginTransaction();
 
-            session.save(employee1);
+            Employee employee3 = session.get(Employee.class,15);
+            System.out.println(employee3.getEmployeeDetail());
 
             session.getTransaction().commit();
             System.out.println("Done");
@@ -33,9 +32,9 @@ public class Test1 {
 
 
         }finally {
+            session.close();
             factory.close();
         }
-
 
     }
 }

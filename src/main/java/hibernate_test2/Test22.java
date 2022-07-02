@@ -1,4 +1,4 @@
-package com.example.Zaur8;
+package hibernate_test2;
 
 
 import hibernate_test2.entity.Detail;
@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class Test1 {
+public class Test22 {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -17,12 +17,13 @@ public class Test1 {
                 .buildSessionFactory();
         try {
 
-            Employee employee1 = new Employee("Olena","gerasymluik","IT",800);
-            Detail detail1 = new Detail("Vinnitsa","+380675063714","paginas88@gmail.com");
+
+            Session session = factory.getCurrentSession();
+            Employee employee1 = new Employee("Mike","Stoba","Sales",800);
+            Detail detail1 = new Detail("Vinnitsa","+380674308988","chigovv@gmail.com");
 
             employee1.setEmployeeDetail(detail1);
 
-            Session session = factory.getCurrentSession();
             session.beginTransaction();
 
             session.save(employee1);
