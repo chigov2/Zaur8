@@ -19,7 +19,7 @@ public class Test2 {
             session.beginTransaction();
 
             List employees = session.createQuery("from Employee " +
-                    "where name ='Mike' and salary >900" )
+                    "where name ='Mike' and salary <900" )
                     .getResultList();
             for(Object e : employees){
                 System.out.println("------------------------");

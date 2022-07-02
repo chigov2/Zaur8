@@ -8,35 +8,34 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class Test22 {
+public class Test26 {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Employee.class)
                 .addAnnotatedClass(Detail.class)
                 .buildSessionFactory();
+        Session session = null;
         try {
 
-
-            Session session = factory.getCurrentSession();
-            Employee employee1 = new Employee("John","Doe","Sales",900);
-            Detail detail1 = new Detail("SLC","+38031811501","chigovv@gmail.com");
-
-            employee1.setEmployeeDetail(detail1);
-
+            session = factory.getCurrentSession();
             session.beginTransaction();
 
-            session.save(employee1);
+            Detail detail3 = session.get(Detail.class,3);
+            System.out.println(detail3.getEmployee());
+            System.out.println(detail3);
+
 
             session.getTransaction().commit();
             System.out.println("Done");
             System.out.println("---------------------");
 
 
+
         }finally {
+            session.close();
             factory.close();
         }
-
 
     }
 }

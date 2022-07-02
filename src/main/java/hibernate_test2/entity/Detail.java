@@ -16,7 +16,7 @@ public class Detail {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(mappedBy = "employeeDetail")
+    @OneToOne(mappedBy = "employeeDetail",cascade = CascadeType.ALL)
     private Employee employee;
 
     public Detail() {
