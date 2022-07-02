@@ -16,6 +16,10 @@ public class Test5 {
             Session session = factory.getCurrentSession();
             session.beginTransaction();
 
+//            Employee employee2 = session.get(Employee.class,1);
+//            session.delete(employee2);
+            session.createQuery("delete Employee " +
+                    "where name = 'Mike'").executeUpdate();
 
             session.getTransaction().commit();
             System.out.println("Done");
