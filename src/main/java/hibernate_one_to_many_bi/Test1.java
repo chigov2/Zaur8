@@ -1,8 +1,7 @@
-package hibernate_one_to_many;
+package hibernate_one_to_many_bi;
 
 
-import hibernate_one_to_many.entity.Employee;
-import hibernate_one_to_one.entity.Detail;
+import hibernate_one_to_many_bi.entity.Employee;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,20 +13,15 @@ public class Test1 {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Employee.class)
-                .addAnnotatedClass(Detail.class)
+
                 .buildSessionFactory();
+
+        Session session = null;
         try {
-
-
-            Session session = factory.getCurrentSession();
-            Employee employee1 = new Employee("Olena","gerasymluik","IT",800);
-            Detail detail1 = new Detail("Vinnitsa","+380675063714","paginas88@gmail.com");
-
-            employee1.setEmployeeDetail(detail1);
-
+            session = factory.getCurrentSession();
             session.beginTransaction();
 
-            session.save(employee1);
+
 
             session.getTransaction().commit();
             System.out.println("Done");
@@ -35,6 +29,7 @@ public class Test1 {
 
 
         }finally {
+            session.close();
             factory.close();
         }
 
