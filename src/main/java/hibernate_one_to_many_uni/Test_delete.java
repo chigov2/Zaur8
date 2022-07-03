@@ -24,7 +24,7 @@ public class Test_delete {
 
 //            Department department = session.get(Department.class, 1);
             Department department = session.get(Department.class, 1);
-            session.delete(department);
+//            session.delete(department);
 //            System.out.println(department);
 //            System.out.println(department.getEmployees());
 

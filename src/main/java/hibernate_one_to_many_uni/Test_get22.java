@@ -1,13 +1,14 @@
-package hibernate_one_to_many_bi;
+package hibernate_one_to_many_uni;
 
 
-import hibernate_one_to_many_bi.entity.*;
+import hibernate_one_to_many_bi.entity.Department;
+import hibernate_one_to_many_bi.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class Test31_get {
+public class Test_get22 {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -19,16 +20,18 @@ public class Test31_get {
         try {
             session = factory.getCurrentSession();
 
+            Department department = new Department("Sales",700,1500);
+            Employee employee1 = new Employee("Mike","Stoba",500);
+            Employee employee2 = new Employee("Max","Stoba",600);
+            Employee employee3 = new Employee("John","Doe",600);
+
+            department.addEmployeeToDepartment(employee1);
+            department.addEmployeeToDepartment(employee2);
+            department.addEmployeeToDepartment(employee3);
+
             session.beginTransaction();
 
-            Department department = session.get(Department.class, 1);
-            System.out.println("Show department ->");
-            System.out.println(department);
-            System.out.println("----------------------");
-            System.out.println(department.getEmployees());
-//            Employee employee = session.get(Employee.class,1);
-//            System.out.println(employee);
-//            System.out.println(employee.getDepartment());
+            session.save(department);
 
             session.getTransaction().commit();
             System.out.println("Done");

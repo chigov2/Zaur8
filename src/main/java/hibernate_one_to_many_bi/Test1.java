@@ -21,18 +21,12 @@ public class Test1 {
             session = factory.getCurrentSession();
             session.beginTransaction();
 
-
-
             session.getTransaction().commit();
             System.out.println("Done");
             System.out.println("---------------------");
-
-
         }finally {
             session.close();
             factory.close();
         }
-
-
     }
 }

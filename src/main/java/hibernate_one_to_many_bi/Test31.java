@@ -20,13 +20,14 @@ public class Test31 {
         try {
             session = factory.getCurrentSession();
 
-            Department department = new Department("IT",300,1200);
+            Department department = new Department("Sales",700,1500);
             Employee employee1 = new Employee("Mike","Stoba",500);
             Employee employee2 = new Employee("Max","Stoba",600);
+            Employee employee3 = new Employee("John","Doe",600);
 
             department.addEmployeeToDepartment(employee1);
             department.addEmployeeToDepartment(employee2);
-
+            department.addEmployeeToDepartment(employee3);
 
             session.beginTransaction();
 
