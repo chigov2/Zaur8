@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class Test {
+public class Test_delete {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -18,25 +18,23 @@ public class Test {
         try{
             session = factory.getCurrentSession();
 
-            Section section1 = new Section("Football");
-            Child child1 = new Child("Mike",5);
-            Child child2 = new Child("Alex",6);
-            Child child3 = new Child("Olena",5);
 
             session.beginTransaction();
 
-            session.save(section1);
+//            Section section = session.get(Section.class,1);
+//
+//            System.out.println("Section1-> "+ section);
+//            System.out.println("Section1 and children -> "+ section.getChildrens());
+//            System.out.println("---------------");
+            Child child1 = session.get(Child.class,3);
 
-            section1.addChildToSection(child1);
-            section1.addChildToSection(child2);
-            section1.addChildToSection(child3);
+            System.out.println("Child1 -> "+ child1);
+            System.out.println("Child1 and section -> "+child1.getSections());
 
-            session.save(child1);
-            session.save(child2);
-            session.save(child3);
 
             session.getTransaction().commit();
             System.out.println("---------------");
+
             System.out.println("Done");
 
         }finally {
